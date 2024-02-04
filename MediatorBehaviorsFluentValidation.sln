@@ -1,0 +1,37 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.7.34031.279
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MediatorBehaviorsFluentValidation", "MediatorBehaviorsFluentValidation\MediatorBehaviorsFluentValidation.csproj", "{4DD68405-A850-4F06-B278-DA60FDB8D965}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MediatorBehaviorsFluentValidation.Domain", "MediatorBehaviorsFluentValidation.Domain\MediatorBehaviorsFluentValidation.Domain.csproj", "{6DBD33BB-F20C-449B-9F38-B1F6AFE28242}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MediatorBehaviorsFluentValidation.Repository", "MediatorBehaviorsFluentValidation.Repository\MediatorBehaviorsFluentValidation.Repository.csproj", "{3119A2D7-797E-4ADA-BE58-59635CB54C62}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{4DD68405-A850-4F06-B278-DA60FDB8D965}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{4DD68405-A850-4F06-B278-DA60FDB8D965}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{4DD68405-A850-4F06-B278-DA60FDB8D965}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{4DD68405-A850-4F06-B278-DA60FDB8D965}.Release|Any CPU.Build.0 = Release|Any CPU
+		{6DBD33BB-F20C-449B-9F38-B1F6AFE28242}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{6DBD33BB-F20C-449B-9F38-B1F6AFE28242}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{6DBD33BB-F20C-449B-9F38-B1F6AFE28242}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{6DBD33BB-F20C-449B-9F38-B1F6AFE28242}.Release|Any CPU.Build.0 = Release|Any CPU
+		{3119A2D7-797E-4ADA-BE58-59635CB54C62}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{3119A2D7-797E-4ADA-BE58-59635CB54C62}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{3119A2D7-797E-4ADA-BE58-59635CB54C62}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{3119A2D7-797E-4ADA-BE58-59635CB54C62}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {43BB02C0-195F-4CFD-B63E-8718A6A395A3}
+	EndGlobalSection
+EndGlobal
