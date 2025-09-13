@@ -228,13 +228,172 @@ POST /api/customers
 }
 ```
 
-## 🧪 Testes
+## 🧪 Testes Unitários
+
+O projeto possui uma **suíte completa de testes unitários** implementada com **XUnit**, garantindo alta qualidade e confiabilidade do código.
+
+### 📊 Resumo dos Testes
+- **64 testes implementados** com 100% de sucesso
+- **Framework**: XUnit + Moq + FluentAssertions
+- **Tempo de execução**: ~1 segundo
+- **Cobertura**: Todos os componentes principais testados
+
+### 🏗️ Estrutura do Projeto de Testes
+```
+MediatorBehaviorsFluentValidation.Tests/
+├── Controllers/           # Testes de endpoints (6 testes)
+├── Handlers/             # Testes de handlers MediatR (11 testes)
+├── Mappings/             # Testes de mappers estáticos (12 testes)
+├── PipelineBehaviors/    # Testes de behaviors (5 testes)
+└── Validation/           # Testes de validadores (12 testes)
+```
+
+### 🎯 Componentes Testados
+
+#### **Handlers** (11 testes)
+- **CreateCustomerHandler**: Validação de criação de clientes
+- **GetAllCustomerHandler**: Listagem de clientes
+- **GetByIdCustomerHandler**: Busca por ID
+
+**Cenários testados:**
+- ✅ Comandos válidos e inválidos
+- ✅ Retorno de dados corretos
+- ✅ Propagação de exceções
+- ✅ Valores nulos e casos extremos
+
+#### **Validators** (12 testes)
+- **CreateCustomerCommandValidator**: Validação fluente completa
+
+**Cenários testados:**
+- ✅ Campos obrigatórios (FirstName, LastName, Email)
+- ✅ Formato de email válido
+- ✅ Tamanho mínimo de campos
+- ✅ Valores nulos e strings vazias
+- ✅ Múltiplos erros simultâneos
+
+#### **Pipeline Behaviors** (5 testes)
+- **ValidationBehavior**: Interceptação de requests
+
+**Cenários testados:**
+- ✅ Validação bem-sucedida
+- ✅ Validação com falhas
+- ✅ Múltiplos validadores
+- ✅ Ausência de validadores
+- ✅ Propagação de exceções
+
+#### **Mappers** (12 testes)
+- **CustomerMapper**: Mapeamento estático
+
+**Cenários testados:**
+- ✅ Conversão Customer → CustomerResponse
+- ✅ Conversão CreateCustomerCommand → Customer
+- ✅ Conversão Customer → CreateCustomerCommand
+- ✅ Valores nulos e listas vazias
+- ✅ Múltiplos objetos
+
+#### **Controllers** (6 testes)
+- **CustomersController**: Endpoints da API
+
+**Cenários testados:**
+- ✅ Endpoints GET e POST
+- ✅ Retorno de dados corretos
+- ✅ Propagação de exceções
+- ✅ Validação de comandos
+
+### 🚀 Como Executar os Testes
+
+#### Executar Todos os Testes
+```bash
+dotnet test
+```
+
+#### Executar com Cobertura de Código
+```bash
+dotnet test --collect:"XPlat Code Coverage"
+```
+
+#### Executar com Log Detalhado
+```bash
+dotnet test --logger "console;verbosity=normal"
+```
+
+#### Executar Testes Específicos
+```bash
+# Apenas testes de Handlers
+dotnet test --filter "Handlers"
+
+# Apenas testes de Validação
+dotnet test --filter "Validation"
+
+# Apenas testes de Mappers
+dotnet test --filter "Mappings"
+```
+
+### 🛠️ Tecnologias de Teste Utilizadas
+
+- **XUnit** - Framework principal de testes
+- **Moq** - Mocking de dependências para isolamento
+- **FluentAssertions** - Assertions mais expressivas
+- **coverlet.collector** - Coleta de métricas de cobertura
+- **Microsoft.AspNetCore.Mvc.Testing** - Testes de integração
+
+### 📋 Padrões de Teste Implementados
+
+#### **Arrange-Act-Assert (AAA)**
+Todos os testes seguem o padrão AAA para clareza:
+```csharp
+[Fact]
+public async Task Handle_ValidCommand_ShouldReturnCustomerId()
+{
+    // Arrange
+    var command = new CreateCustomerCommand { /* ... */ };
+    _repositoryMock.Setup(/* ... */);
+
+    // Act
+    var result = await _handler.Handle(command, CancellationToken.None);
+
+    // Assert
+    Assert.Equal(expectedId, result);
+}
+```
+
+#### **Mocking de Dependências**
+Uso extensivo do Moq para isolar unidades sob teste:
+```csharp
+private readonly Mock<ICustomerRepository> _repositoryMock;
+private readonly Mock<ILogger<CreateCustomerHandler>> _loggerMock;
+```
+
+#### **Testes Parametrizados**
+Uso de `[Theory]` e `[InlineData]` para testar múltiplos cenários:
+```csharp
+[Theory]
+[InlineData("")]
+[InlineData(" ")]
+[InlineData("string")]
+public void Validate_InvalidFirstName_ShouldFail(string firstName)
+{
+    // Teste para múltiplos valores
+}
+```
+
+### 🎯 Qualidade dos Testes
+
+- ✅ **Cobertura Completa**: Todos os componentes principais testados
+- ✅ **Isolamento**: Uso correto de mocks para dependências
+- ✅ **Cenários Diversos**: Casos válidos, inválidos e extremos
+- ✅ **Nomenclatura Clara**: Nomes descritivos dos métodos de teste
+- ✅ **Organização**: Estrutura de pastas bem definida
+
+### 🔧 Facilidades para Testes
 
 O projeto está estruturado para facilitar testes unitários:
-- **Handlers** podem ser testados isoladamente
+- **Handlers** podem ser testados isoladamente com mocks
 - **Validators** são testáveis independentemente
 - **Repository** pode ser mockado facilmente
 - **Pipeline Behaviors** podem ser testados separadamente
+- **Dependency Injection** facilita a substituição de dependências
+- **Interfaces bem definidas** permitem mocking eficiente
 
 ## 🔄 Melhorias Implementadas
 

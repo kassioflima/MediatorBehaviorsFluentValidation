@@ -9,6 +9,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MediatorBehaviorsFluentVali
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MediatorBehaviorsFluentValidation.Repository", "MediatorBehaviorsFluentValidation.Repository\MediatorBehaviorsFluentValidation.Repository.csproj", "{3119A2D7-797E-4ADA-BE58-59635CB54C62}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MediatorBehaviorsFluentValidation.Tests", "MediatorBehaviorsFluentValidation.Tests\MediatorBehaviorsFluentValidation.Tests.csproj", "{9725E159-F406-482E-BE3A-68EF031556EF}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -27,6 +29,10 @@ Global
 		{3119A2D7-797E-4ADA-BE58-59635CB54C62}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{3119A2D7-797E-4ADA-BE58-59635CB54C62}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{3119A2D7-797E-4ADA-BE58-59635CB54C62}.Release|Any CPU.Build.0 = Release|Any CPU
+		{9725E159-F406-482E-BE3A-68EF031556EF}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{9725E159-F406-482E-BE3A-68EF031556EF}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{9725E159-F406-482E-BE3A-68EF031556EF}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{9725E159-F406-482E-BE3A-68EF031556EF}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
