@@ -1,5 +1,5 @@
-﻿using AutoMapper;
-using MediatorBehaviorsFluentValidation.Domain.Interfaces;
+﻿using MediatorBehaviorsFluentValidation.Domain.Interfaces;
+using MediatorBehaviorsFluentValidation.Domain.Mappings;
 using MediatorBehaviorsFluentValidation.Domain.Queries.Customers;
 using MediatorBehaviorsFluentValidation.Domain.Responses;
 using MediatR;
@@ -7,24 +7,22 @@ using Microsoft.Extensions.Logging;
 
 namespace MediatorBehaviorsFluentValidation.Domain.Handlers.Customers
 {
-    public class GetByIdCustomerHandler : IRequestHandler<GetByIdCustomerQuery, CustomerResponse>
+    public class GetByIdCustomerHandler : IRequestHandler<GetByIdCustomerQuery, CustomerResponse?>
     {
         private readonly ILogger<GetByIdCustomerHandler> _logger;
-        private readonly IMapper _mapper;
         private readonly ICustomerRepository _customerRepository;
 
-        public GetByIdCustomerHandler(ILogger<GetByIdCustomerHandler> logger, IMapper mapper, ICustomerRepository customerRepository)
+        public GetByIdCustomerHandler(ILogger<GetByIdCustomerHandler> logger, ICustomerRepository customerRepository)
         {
             _logger = logger;
-            _mapper = mapper;
             _customerRepository = customerRepository;
         }
 
-        public async Task<CustomerResponse> Handle(GetByIdCustomerQuery request, CancellationToken cancellationToken)
+        public async Task<CustomerResponse?> Handle(GetByIdCustomerQuery request, CancellationToken cancellationToken)
         {
-            _logger.LogInformation("Handler list all customer");
+            _logger.LogInformation("Handler get customer by id");
             var customer = await _customerRepository.GetByAsync(request.Id);
-            return _mapper.Map<CustomerResponse>(customer);
+            return customer?.ToResponse();
         }
     }
 }

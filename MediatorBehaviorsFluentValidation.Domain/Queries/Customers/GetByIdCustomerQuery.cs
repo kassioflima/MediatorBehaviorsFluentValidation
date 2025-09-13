@@ -3,7 +3,7 @@ using MediatR;
 
 namespace MediatorBehaviorsFluentValidation.Domain.Queries.Customers
 {
-    public class GetByIdCustomerQuery : IRequest<CustomerResponse>
+    public class GetByIdCustomerQuery : IRequest<CustomerResponse?>
     {
         public int Id { get; }
 

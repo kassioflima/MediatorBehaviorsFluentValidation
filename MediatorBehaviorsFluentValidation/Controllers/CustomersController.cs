@@ -28,7 +28,7 @@ namespace MediatorBehaviorsFluentValidation.Controllers
         /// <response code="500">If ocurred a internal server error.</response>
         [HttpGet]
         [ProducesResponseType(StatusCodes.Status200OK, Type = typeof(CustomerResponse))]
-        [ProducesResponseType(StatusCodes.Status500InternalServerError, Type = typeof(ErrorMessageResponse))]
+        [ProducesResponseType(StatusCodes.Status500InternalServerError, Type = typeof(ProblemDetailsResponse))]
         public async Task<IActionResult> GetAllAsync()
         {
             var query = new GetAllCustomerQuery();
@@ -47,15 +47,23 @@ namespace MediatorBehaviorsFluentValidation.Controllers
         /// <response code="500">If ocurred a internal server error.</response>
         [HttpGet("{custormerId}")]
         [ProducesResponseType(StatusCodes.Status200OK, Type = typeof(CustomerResponse))]
-        [ProducesResponseType(StatusCodes.Status404NotFound, Type = typeof(ErrorMessageResponse))]
-        [ProducesResponseType(StatusCodes.Status500InternalServerError, Type = typeof(ErrorMessageResponse))]
+        [ProducesResponseType(StatusCodes.Status404NotFound, Type = typeof(ProblemDetailsResponse))]
+        [ProducesResponseType(StatusCodes.Status500InternalServerError, Type = typeof(ProblemDetailsResponse))]
         public async Task<IActionResult> GetByAsync(int custormerId)
         {
             var query = new GetByIdCustomerQuery(custormerId);
             _logger.LogInformation("listing get by custormerId.");
             var result = await _mediator.Send(query);
             if (result is null)
-                return NotFound();
+            {
+                var problemDetails = new ProblemDetailsResponse(
+                    title: "Customer Not Found",
+                    status: 404,
+                    detail: $"Customer with ID {custormerId} was not found.",
+                    instance: Request.Path
+                );
+                return NotFound(problemDetails);
+            }
 
             return Ok(result);
         }
@@ -82,8 +90,8 @@ namespace MediatorBehaviorsFluentValidation.Controllers
         /// <response code="500">If ocurred a internal server error.</response>
         [HttpPost]
         [ProducesResponseType(StatusCodes.Status201Created, Type = typeof(int))]
-        [ProducesResponseType(StatusCodes.Status400BadRequest, Type = typeof(IEnumerable<ErrorMessageResponse>))]
-        [ProducesResponseType(StatusCodes.Status500InternalServerError, Type = typeof(ErrorMessageResponse))]
+        [ProducesResponseType(StatusCodes.Status400BadRequest, Type = typeof(ValidationErrorResponse))]
+        [ProducesResponseType(StatusCodes.Status500InternalServerError, Type = typeof(ProblemDetailsResponse))]
         public async Task<IActionResult> CreateCustomerAsync(CreateCustomerCommand command)
         {
             var result = await _mediator.Send(command);
