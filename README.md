@@ -426,4 +426,8 @@ Este projeto serve como exemplo de implementação de padrões de arquitetura li
 
 ---
 
-**Desenvolvido com ❤️ usando .NET 9.0**
+**Desenvolvido usando .NET 9.0**
+
+
+- **Desenvolvedor**: [Kássio Fernandes Lima]
+- **Email**: [kassioflima@gmail.com]
